@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">bmaroney_ToDoList</string>
+    <string name="app_name">&quot;bmaroney-ToDoList&quot;</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_new">New Todo item</string>
+    <string name="activity_ListHub_title">Todos</string>
 
 </resources>
