@@ -2,5 +2,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.bmaroney_todolist.ListHub" >
     <item android:id="@+id/create_todo" android:icon="@drawable/ic_action_new" android:title="@string/action_new" android:showAsAction="ifRoom"></item>
-
+    <item android:id="@+id/stats" android:title="@string/action_viewStats" android:showAsAction="withText"></item>
 </menu>

@@ -7,5 +7,9 @@
     <string name="action_delete">Delete</string>
     <string name="action_new">New Todo item</string>
     <string name="activity_ListHub_title">Todos</string>
+    <string name="action_viewStats">Stats</string>
+    <string name="activity_ListHub_MasterList">titleset</string>
+    <string name="activity_ListHub_ToDoTitles">content</string>
+    <string name="activity_listHubState">State Info</string>
 
 </resources>
