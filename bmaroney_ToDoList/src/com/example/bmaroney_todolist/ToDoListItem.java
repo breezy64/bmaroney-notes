@@ -3,8 +3,8 @@ package com.example.bmaroney_todolist;
 import java.util.List;
 
 public class ToDoListItem {
-	private String Title="";
-	private String todo="";
+	private String Title;
+	private String todo;
 	private boolean isChecked=false;
 	private boolean isDone=false;
 	
@@ -25,6 +25,10 @@ public class ToDoListItem {
 			result+=item.printToDoListItem();
 		}
 		return result;
+	}
+	@Override
+	public String toString(){
+		return printToDoListItem();
 	}
 	public String getTitle(){
 		return Title;
