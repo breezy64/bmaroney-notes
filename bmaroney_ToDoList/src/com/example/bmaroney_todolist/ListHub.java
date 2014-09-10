@@ -1,6 +1,7 @@
 package com.example.bmaroney_todolist;
 
 import java.util.Set;
+import java.util.TreeSet;
 
 import android.app.Activity;
 import android.content.Context;
@@ -45,7 +46,10 @@ public class ListHub extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data ){
 		if(requestCode==this.createToDo_result && resultCode==this.RESULT_OK){
 			items.add(unBundleToDo(data.getExtras()));
+			backUpPreferences(unBundleToDo(data.getExtras()));
 		}
+	}
+	private void backUpPreferences(ToDoListItem todo){
 	}
 	private ToDoListItem unBundleToDo(Bundle b){
 		return new ToDoListItem(b.getString(getString(R.string.titles_text)),b.getString(getString(R.string.notes_text)),false);
