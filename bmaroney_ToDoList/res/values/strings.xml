@@ -11,5 +11,9 @@
     <string name="prefs_titles">ToDoListItem_titles</string>
     <string name="prefs_state">State Info</string>
     <string name="titles_key">ToDoList_titleKey</string>
+    <string name="activity_newTodo">Create a new Todo</string>
+    <string name="button_Create">Create</string>
+    <string name="titles_text">textTitle</string>
+    <string name="notes_text">textNote</string>
 
 </resources>
