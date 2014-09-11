@@ -56,14 +56,17 @@ public class ListHub extends Activity {
 	}
 	private void backUpState(SharedPreferences.Editor pref, String key, Boolean value){
 		pref.putBoolean(key, value);
+		pref.commit();
 	}
 	private void backUptheTitle(SharedPreferences titlePrefs,String title){
 		SharedPreferences.Editor edit=titlePrefs.edit();
 		Set<String> titles=titlePrefs.getStringSet(getString(R.string.titles_key), new TreeSet<String>());
 		edit.putStringSet(getString(R.string.titles_key),titles);
+		edit.commit();
 	}
 	private void backUpNotes(SharedPreferences.Editor edit, String key, String note){
 		edit.putString(key, note);
+		edit.commit();
 	}
 	private ToDoListItem unBundleToDo(Bundle b){
 		return new ToDoListItem(b.getString(getString(R.string.titles_text)),b.getString(getString(R.string.notes_text)),false);
