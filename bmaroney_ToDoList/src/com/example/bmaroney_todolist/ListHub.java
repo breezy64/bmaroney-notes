@@ -1,18 +1,11 @@
 package com.example.bmaroney_todolist;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 public class ListHub extends Activity {
 	private static final int createToDo_result=1;
@@ -47,28 +40,17 @@ public class ListHub extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data ){
 		if(requestCode==this.createToDo_result && resultCode==this.RESULT_OK){
 			items.add(unBundleToDo(data.getExtras()));
-			backUpToPreferences(loadSharedPreference(R.string.prefs_titles),loadSharedPreference(R.string.prefs_state),unBundleToDo(data.getExtras()));
+			backUpToDo(getString(R.string.prefs_titles),getString(R.string.titles_key),getString(R.string.prefs_state),unBundleToDo(data.getExtras()));
 		}
 	}
-	private void backUpToPreferences(SharedPreferences title_prefs, SharedPreferences state_prefs,ToDoListItem item){
-		backUptheTitle(title_prefs, item.getTitle());
-		backUpState(state_prefs.edit(),item.getTitle(),item.isSelected());
-		backUpNotes(title_prefs.edit(),item.getTitle(),item.gettoDo());
+	private void loadToDoList(){
+		items=new ArrayAdapter<ToDoListItem>(this,android.R.layout.simple_list_item_1);
+		ToDoListLoader loader=new ToDoListLoader(this,getString(R.string.prefs_titles),getString(R.string.titles_key),getString(R.string.prefs_state));
+		loader.loadToDoList(this,items);
 	}
-	private void backUpState(SharedPreferences.Editor pref, String key, Boolean value){
-		pref.putBoolean(key, value);
-		pref.commit();
-	}
-	private void backUptheTitle(SharedPreferences titlePrefs,String title){
-		SharedPreferences.Editor edit=titlePrefs.edit();
-		Set<String> titles=titlePrefs.getStringSet(getString(R.string.titles_key), new HashSet<String>());
-		titles.add(title);
-		edit.putStringSet(getString(R.string.titles_key),titles);
-		edit.commit();
-	}
-	private void backUpNotes(SharedPreferences.Editor edit, String key, String note){
-		edit.putString(key, note);
-		edit.commit();
+	private void backUpToDo(String titlePref, String titleKey,String statePref,ToDoListItem item){
+		saveToDoList saver=new saveToDoList(this,titlePref,titleKey,statePref);
+		saver.saveToDoListItem(item);
 	}
 	private ToDoListItem unBundleToDo(Bundle b){
 		return new ToDoListItem(b.getString(getString(R.string.titles_text)),b.getString(getString(R.string.notes_text)),false);
@@ -76,40 +58,5 @@ public class ListHub extends Activity {
 	private void createTodo(){
 		Intent createTodo = new Intent(this, newTodo.class);
 		this.startActivityForResult(createTodo,createToDo_result);
-	}
-	private void loadToDoList(){
-		SharedPreferences titleprefs=loadSharedPreference(R.string.prefs_titles);
-		items=new ArrayAdapter<ToDoListItem>(this,android.R.layout.simple_list_item_1);
-		showList();
-		if(todosPresent(titleprefs)){
-			getToDoListItems(titleprefs,loadSharedPreference(R.string.prefs_state));
-			
-		}
-	}
-	
-
-	private SharedPreferences loadSharedPreference(int stringID){
-		 return loadPreference(getString(stringID));
-	}
-	private SharedPreferences loadPreference(String key){
-		 return getSharedPreferences(key,Context.MODE_PRIVATE);
-	}
-	private boolean todosPresent(SharedPreferences prefs){
-		try{
-			return !(prefs.getAll().isEmpty()); //check if the corresponding map of preferences is empty
-		}catch(NullPointerException ex){
-			return false;
-		}
-	}
-	private void getToDoListItems(SharedPreferences titleprefs, SharedPreferences stateprefs){
-		Set<String> titles=titleprefs.getStringSet(getString(R.string.titles_key),null);
-		for(String title:titles){
-			items.add(new ToDoListItem(title,titleprefs.getString(title,""),stateprefs.getBoolean(title, false)));
-		}
-		
-	}
-	private void showList(){
-		ListView List=(ListView) this.findViewById(R.id.listView1);
-		List.setAdapter(items);
 	}
 }
