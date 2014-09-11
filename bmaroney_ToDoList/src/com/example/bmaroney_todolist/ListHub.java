@@ -46,10 +46,24 @@ public class ListHub extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data ){
 		if(requestCode==this.createToDo_result && resultCode==this.RESULT_OK){
 			items.add(unBundleToDo(data.getExtras()));
-			backUpPreferences(unBundleToDo(data.getExtras()));
+			backUpToPreferences(loadSharedPreference(R.string.prefs_titles),loadSharedPreference(R.string.prefs_state),unBundleToDo(data.getExtras()));
 		}
 	}
-	private void backUpPreferences(ToDoListItem todo){
+	private void backUpToPreferences(SharedPreferences title_prefs, SharedPreferences state_prefs,ToDoListItem item){
+		backUptheTitle(title_prefs, item.getTitle());
+		backUpState(state_prefs.edit(),item.getTitle(),item.isSelected());
+		backUpNotes(title_prefs.edit(),item.getTitle(),item.gettoDo());
+	}
+	private void backUpState(SharedPreferences.Editor pref, String key, Boolean value){
+		pref.putBoolean(key, value);
+	}
+	private void backUptheTitle(SharedPreferences titlePrefs,String title){
+		SharedPreferences.Editor edit=titlePrefs.edit();
+		Set<String> titles=titlePrefs.getStringSet(getString(R.string.titles_key), new TreeSet<String>());
+		edit.putStringSet(getString(R.string.titles_key),titles);
+	}
+	private void backUpNotes(SharedPreferences.Editor edit, String key, String note){
+		edit.putString(key, note);
 	}
 	private ToDoListItem unBundleToDo(Bundle b){
 		return new ToDoListItem(b.getString(getString(R.string.titles_text)),b.getString(getString(R.string.notes_text)),false);
