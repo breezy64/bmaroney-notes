@@ -1,5 +1,6 @@
 package com.example.bmaroney_todolist;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -60,7 +61,8 @@ public class ListHub extends Activity {
 	}
 	private void backUptheTitle(SharedPreferences titlePrefs,String title){
 		SharedPreferences.Editor edit=titlePrefs.edit();
-		Set<String> titles=titlePrefs.getStringSet(getString(R.string.titles_key), new TreeSet<String>());
+		Set<String> titles=titlePrefs.getStringSet(getString(R.string.titles_key), new HashSet<String>());
+		titles.add(title);
 		edit.putStringSet(getString(R.string.titles_key),titles);
 		edit.commit();
 	}
