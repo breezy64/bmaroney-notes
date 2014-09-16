@@ -44,9 +44,9 @@ public class ListHub extends Activity {
 		}
 	}
 	private void loadToDoList(){
-		items=new ArrayAdapter<ToDoListItem>(this,android.R.layout.simple_list_item_1);
+		items=new ArrayAdapter<ToDoListItem>(this,android.R.layout.simple_list_item_checked);
 		ToDoListLoader loader=new ToDoListLoader(this,getString(R.string.prefs_titles),getString(R.string.titles_key),getString(R.string.prefs_state));
-		loader.loadToDoList(this,items);
+		loader.loadToDoList(this,items,R.id.listView1);
 	}
 	private void backUpToDo(String titlePref, String titleKey,String statePref,ToDoListItem item){
 		saveToDoList saver=new saveToDoList(this,titlePref,titleKey,statePref);
