@@ -15,5 +15,8 @@
     <string name="button_Create">Create</string>
     <string name="titles_text">textTitle</string>
     <string name="notes_text">textNote</string>
+    <string name="Email">action_email</string>
+    <string name="action_email">Email</string>
+    <string name="action_markCompleted">Mark as Completed</string>
 
 </resources>

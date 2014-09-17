@@ -11,11 +11,11 @@ public class ToDoListLoader extends ToDoListPreferenceHelper {
 	public ToDoListLoader(Activity act,String titleprefs_key,String titlekeys,String stateprefs_key){
 		super(act,titleprefs_key,titlekeys,stateprefs_key);
 	}
-	public void loadToDoList(Activity act,ArrayAdapter<ToDoListItem> items, int listViewID){
-		bindAdaptertoListView(act,items,listViewID);
+	public ListView loadToDoList(Activity act,ArrayAdapter<ToDoListItem> items, int listViewID){
 		if(todosPresent()){
 			getToDoListItems(items,act,listViewID);
 		}
+		return bindAdaptertoListView(act,items,listViewID);
 	}
 	private boolean todosPresent(){
 		return getTitlePrefs().contains(getKey());
@@ -33,8 +33,11 @@ public class ToDoListLoader extends ToDoListPreferenceHelper {
 		lv.setChoiceMode(lv.CHOICE_MODE_MULTIPLE);
 		lv.setItemChecked(position.intValue(), item.toDoCompleted());
 	}
-	private void bindAdaptertoListView(Activity act,ArrayAdapter<ToDoListItem> items,int listViewID){
-		getListView(act,listViewID).setAdapter(items);
+	private ListView bindAdaptertoListView(Activity act,ArrayAdapter<ToDoListItem> items,int listViewID){
+		ListView lv=getListView(act,listViewID);
+		lv.setAdapter(items);
+		return lv;
+		
 	}
 	private ListView getListView(Activity act, int listViewID){
 		return (ListView) act.findViewById(listViewID);
