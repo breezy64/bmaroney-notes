@@ -50,6 +50,12 @@ public class ListHub extends Activity {
 		items=new ArrayAdapter<ToDoListItem>(this,android.R.layout.simple_list_item_checked);
 		ToDoListLoader loader=new ToDoListLoader(this,getString(R.string.prefs_titles),getString(R.string.titles_key),getString(R.string.prefs_state),R.id.listView1);
 		loader.loadToDoList(items);
+		loader.getListView(R.id.listView1).setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,int position, long id) {
+				return false;
+			}
+		});
 	}
 	private void backUpToDo(String titlePref, String titleKey,String statePref,ToDoListItem item){
 		saveToDoList saver=new saveToDoList(this,titlePref,titleKey,statePref);
