@@ -17,13 +17,16 @@ public class ToDoListPreferenceHelper {
 	private SharedPreferences loadPreference(Activity act,String key){
 		 return act.getSharedPreferences(key,Context.MODE_PRIVATE);
 	}
-	protected SharedPreferences getTitlePrefs(){
+	public SharedPreferences getTitlePrefs(){
 		return titleprefs;
 	}
-	protected String getKey(){
+	public String getKey(){
 		return titlekeys;
 	}
-	protected SharedPreferences getStatePrefs(){
+	public SharedPreferences getStatePrefs(){
 		return stateprefs;
+	}
+	public boolean isEmpty(){
+		return getTitlePrefs().contains(getKey());
 	}
 }

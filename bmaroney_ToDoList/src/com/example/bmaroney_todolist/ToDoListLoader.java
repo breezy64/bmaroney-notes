@@ -7,23 +7,23 @@ import android.content.SharedPreferences;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class ToDoListLoader extends ToDoListPreferenceHelper {
+public class ToDoListLoader{
+	private ToDoListPreferenceHelper helper;
+	private Activity act;
 	public ToDoListLoader(Activity act,String titleprefs_key,String titlekeys,String stateprefs_key){
-		super(act,titleprefs_key,titlekeys,stateprefs_key);
+		helper=new ToDoListPreferenceHelper(act,titleprefs_key,titlekeys,stateprefs_key);
+		this.act=act;
 	}
 	public void loadToDoList(Activity act,ArrayAdapter<ToDoListItem> items){
 		bindAdaptertoListView(act,items);
-		if(todosPresent()){
+		if(helper.isEmpty()){
 			getToDoListItems(items);
 		}
 	}
-	private boolean todosPresent(){
-		return getTitlePrefs().contains(getKey());
-	}
 	private void getToDoListItems(ArrayAdapter<ToDoListItem> items){
-		Set<String> titles=getTitlePrefs().getStringSet(getKey(),null);
+		Set<String> titles=helper.getTitlePrefs().getStringSet(helper.getKey(),null);
 		for(String title:titles){
-			items.add(new ToDoListItem(title,getTitlePrefs().getString(title,""),getStatePrefs().getBoolean(title, false)));
+			items.add(new ToDoListItem(title,helper.getTitlePrefs().getString(title,""),helper.getStatePrefs().getBoolean(title, false)));
 		}
 	}
 	private void bindAdaptertoListView(Activity act,ArrayAdapter<ToDoListItem> items){

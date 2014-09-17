@@ -6,14 +6,15 @@ import java.util.Set;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
-public class saveToDoList extends ToDoListPreferenceHelper {
+public class saveToDoList{
+	private ToDoListPreferenceHelper helper;
 	public saveToDoList(Activity act,String titleprefs_key,String titlekeys,String stateprefs_key){
-		super(act,titleprefs_key,titlekeys,stateprefs_key);
+		helper=new ToDoListPreferenceHelper(act,titleprefs_key,titlekeys,stateprefs_key);
 	}
 	public void saveToDoListItem(ToDoListItem item){
-		backUptheTitle(getTitlePrefs(), item.getTitle());
-		backUpState(getStatePrefs().edit(),item.getTitle(),item.isSelected());
-		backUpNotes(getTitlePrefs().edit(),item.getTitle(),item.gettoDo());
+		backUptheTitle(helper.getTitlePrefs(), item.getTitle());
+		backUpState(helper.getStatePrefs().edit(),item.getTitle(),item.isSelected());
+		backUpNotes(helper.getTitlePrefs().edit(),item.getTitle(),item.gettoDo());
 	}
 	private void backUpState(SharedPreferences.Editor pref, String key, Boolean value){
 		pref.putBoolean(key, value);
@@ -21,9 +22,9 @@ public class saveToDoList extends ToDoListPreferenceHelper {
 	}
 	private void backUptheTitle(SharedPreferences titlePrefs,String title){
 		SharedPreferences.Editor edit=titlePrefs.edit();
-		Set<String> titles=titlePrefs.getStringSet(getKey(), new HashSet<String>());
+		Set<String> titles=titlePrefs.getStringSet(helper.getKey(), new HashSet<String>());
 		titles.add(title);
-		edit.putStringSet(getKey(),titles);
+		edit.putStringSet(helper.getKey(),titles);
 		edit.commit();
 	}
 	private void backUpNotes(SharedPreferences.Editor edit, String key, String note){
