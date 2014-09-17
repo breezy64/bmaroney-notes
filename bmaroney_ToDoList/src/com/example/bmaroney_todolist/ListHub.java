@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class ListHub extends Activity {
 	private static final int createToDo_result=1;
@@ -44,9 +47,9 @@ public class ListHub extends Activity {
 		}
 	}
 	private void loadToDoList(){
-		items=new ArrayAdapter<ToDoListItem>(this,android.R.layout.simple_list_item_1);
-		ToDoListLoader loader=new ToDoListLoader(this,getString(R.string.prefs_titles),getString(R.string.titles_key),getString(R.string.prefs_state));
-		loader.loadToDoList(this,items);
+		items=new ArrayAdapter<ToDoListItem>(this,android.R.layout.simple_list_item_checked);
+		ToDoListLoader loader=new ToDoListLoader(this,getString(R.string.prefs_titles),getString(R.string.titles_key),getString(R.string.prefs_state),R.id.listView1);
+		loader.loadToDoList(items);
 	}
 	private void backUpToDo(String titlePref, String titleKey,String statePref,ToDoListItem item){
 		saveToDoList saver=new saveToDoList(this,titlePref,titleKey,statePref);
