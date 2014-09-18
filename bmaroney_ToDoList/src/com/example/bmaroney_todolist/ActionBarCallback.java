@@ -13,17 +13,25 @@
  * See the License for the specific language governing permissions and
  */
 package com.example.bmaroney_todolist;
+import android.widget.AbsListView;
+import android.app.Activity;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-public class ActionBarCallback implements ActionMode.Callback {
-	    // Called when the action mode is created; startActionMode() was called
+public class ActionBarCallback implements AbsListView.MultiChoiceModeListener {
+	    private Activity callingAct;
+	    private int menuID;
+		public ActionBarCallback(Activity act, int menu){
+	    	callingAct=act;
+	    	menuID=menu;
+	    }
+		// Called when the action mode is created; startActionMode() was called
 	    @Override
 	    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 	        // Inflate a menu resource providing context menu items
 	        MenuInflater inflater = mode.getMenuInflater();
-	        inflater.inflate(R.menu.context_menu, menu);
+	        inflater.inflate(menuID, menu);
 	        return true;
 	    }
 
@@ -56,4 +64,10 @@ public class ActionBarCallback implements ActionMode.Callback {
 	    @Override
 	    public void onDestroyActionMode(ActionMode mode) {
 	    }
+
+		@Override
+		public void onItemCheckedStateChanged(ActionMode mode, int position,long id, boolean checked) {
+			// TODO Auto-generated method stub
+			
+		}
 }
