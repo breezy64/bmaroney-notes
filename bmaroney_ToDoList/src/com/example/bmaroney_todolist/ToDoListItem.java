@@ -21,7 +21,7 @@ public class ToDoListItem {
 	public String printToDoListItem(){
 		return "Title: "+getTitle()+"\n"+"todo: "+gettoDo()+"\n";
 	}
-	public String printToDoList(List<ToDoListItem> itms){
+	public static String printToDoList(List<ToDoListItem> itms){
 		String result="";
 		for(ToDoListItem item:itms){
 			result+=item.printToDoListItem();

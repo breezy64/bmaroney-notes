@@ -13,20 +13,25 @@
  * See the License for the specific language governing permissions and
  */
 package com.example.bmaroney_todolist;
+import java.util.ArrayList;
+
 import android.widget.AbsListView;
 import android.widget.ListView;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-public class ActionBarCallback implements AbsListView.MultiChoiceModeListener {
-	    private Activity callingAct;
+public class ListHubMultiChoiceListener implements AbsListView.MultiChoiceModeListener {
+	    private ListHub callingAct;
 	    private int menuID;
-		public ActionBarCallback(Activity act, int menu,ListView list){
-	    	callingAct=act;
+	    private ArrayList<Integer> positions;
+		public ListHubMultiChoiceListener(ListHub act, int menu,ListView list){
+			callingAct=act;
 	    	menuID=menu;
-	    	list.setChoiceMode(list.CHOICE_MODE_MULTIPLE_MODAL);;
+	    	list.setChoiceMode(list.CHOICE_MODE_MULTIPLE_MODAL);
+	    	positions=new ArrayList<Integer>();
 	    }
 		// Called when the action mode is created; startActionMode() was called
 	    @Override
@@ -52,16 +57,17 @@ public class ActionBarCallback implements AbsListView.MultiChoiceModeListener {
 	                mode.finish(); // Action picked, so close the CAB
 	                return true;
 	            case R.id.email:
+	            	callingAct.sendEmail(positions);
 	            	mode.finish(); // Action picked, so close the CAB
 	                return true;
 	            case R.id.action_mark:
+	            	callingAct.checkOffToDo(positions);
 	            	mode.finish(); // Action picked, so close the CAB
 	                return true;
 	            default:
 	                return false;
 	        }
 	    }
-
 	    // Called when the user exits the action mode
 	    @Override
 	    public void onDestroyActionMode(ActionMode mode) {
@@ -69,7 +75,13 @@ public class ActionBarCallback implements AbsListView.MultiChoiceModeListener {
 
 		@Override
 		public void onItemCheckedStateChanged(ActionMode mode, int position,long id, boolean checked) {
-			// TODO Auto-generated method stub
+			if(checked){
+				positions.add(position);
+			}
+			else if(!checked){
+				positions.remove(position);
+			}
+			
 			
 		}
 }

@@ -1,18 +1,21 @@
 package com.example.bmaroney_todolist;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class ListHub extends Activity {
 	private static final int createToDo_result=1;
 	ArrayAdapter<ToDoListItem> items;
+	ListView list;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,7 +53,9 @@ public class ListHub extends Activity {
 		items=new ArrayAdapter<ToDoListItem>(this,android.R.layout.simple_list_item_checked);
 		ToDoListLoader loader=new ToDoListLoader(this,getString(R.string.prefs_titles),getString(R.string.titles_key),getString(R.string.prefs_state),R.id.listView1);
 		loader.loadToDoList(items);
-		loader.getListView(R.id.listView1).setMultiChoiceModeListener(new ActionBarCallback(this,R.menu.context_menu,loader.getListView(R.id.listView1)));
+		list=loader.getListView(R.id.listView1);
+		list.setMultiChoiceModeListener(new ListHubMultiChoiceListener(this,R.menu.context_menu,list));
+		
 	}
 	private void backUpToDo(String titlePref, String titleKey,String statePref,ToDoListItem item){
 		saveToDoList saver=new saveToDoList(this,titlePref,titleKey,statePref);
@@ -63,4 +68,24 @@ public class ListHub extends Activity {
 		Intent createTodo = new Intent(this, newTodo.class);
 		this.startActivityForResult(createTodo,createToDo_result);
 	}
+	 public void sendEmail(ArrayList<Integer> positions){
+	    	Intent email=new Intent(Intent.ACTION_SEND);
+	    	email.setType("message/rfc822");
+	    	email.putExtra(Intent.EXTRA_TEXT,ToDoListItem.printToDoList(arrayAdapterSubList(positions)));
+	    	startActivity(email);
+	 }
+	 public void checkOffToDo(ArrayList<Integer>positions){
+		 for(int position:positions){
+			 StrikeThroughPainter.paint((TextView)list.getChildAt(position),position);
+			 items.getItem(position).markAsCompleted();
+		 }
+	 }
+	 private ArrayList<ToDoListItem> arrayAdapterSubList(ArrayList<Integer> positions){
+		 ArrayList<ToDoListItem> subList=new ArrayList<ToDoListItem>();
+		 for(int position:positions){
+			 subList.add(items.getItem(position));
+		 }
+		 return subList;
+	 }
+	 
 }
