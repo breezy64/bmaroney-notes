@@ -28,7 +28,7 @@ public class ToDoListLoader{
 		for(String title:titles){
 			ToDoListItem item=new ToDoListItem(title,helper.getTitlePrefs().getString(title,""),helper.getStatePrefs().getBoolean(title, false));
 			items.add(item);
-			checkToDo(item,list,new Long(items.getItemId(items.getPosition(item))));
+			//checkToDo(item,list,new Long(items.getItemId(items.getPosition(item))));
 		}
 	}
 	private void checkToDo(ToDoListItem item, ListView lv, Long position){

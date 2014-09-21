@@ -51,7 +51,7 @@ public class ListHub extends Activity {
 		}
 	}
 	private void loadToDoList(){
-		items=new ArrayAdapter<ToDoListItem>(this,android.R.layout.simple_list_item_checked);
+		items=new CheckBoxAdapter(this,R.layout.test);
 		ToDoListLoader loader=new ToDoListLoader(this,getString(R.string.prefs_titles),getString(R.string.titles_key),getString(R.string.prefs_state),R.id.listView1);
 		loader.loadToDoList(items);
 		list=loader.getListView(R.id.listView1);
