@@ -4,6 +4,7 @@ import java.util.Set;
 
 import android.app.Activity;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,14 +28,12 @@ public class ToDoListLoader{
 		for(String title:titles){
 			ToDoListItem item=new ToDoListItem(title,helper.getTitlePrefs().getString(title,""),helper.getStatePrefs().getBoolean(title, false));
 			items.add(item);
-			checkToDo(item,list,items.getPosition(item));
+			checkToDo(item,list,new Long(items.getItemId(items.getPosition(item))));
 		}
 	}
-	private void checkToDo(ToDoListItem item, ListView lv, int position){
+	private void checkToDo(ToDoListItem item, ListView lv, Long position){
 		lv.setChoiceMode(lv.CHOICE_MODE_MULTIPLE);
-		if(item.toDoCompleted()){
-			StrikeThroughPainter.paint((TextView)lv.getChildAt(position),position);
-		}
+		lv.setItemChecked(position.intValue(), item.toDoCompleted());
 	}
 	private void bindAdaptertoListView(ArrayAdapter<ToDoListItem> items){
 		list.setAdapter(items);

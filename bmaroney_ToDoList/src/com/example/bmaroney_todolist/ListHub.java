@@ -11,11 +11,12 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.CheckedTextView;
 
 public class ListHub extends Activity {
 	private static final int createToDo_result=1;
-	ArrayAdapter<ToDoListItem> items;
-	ListView list;
+	private ArrayAdapter<ToDoListItem> items;
+	private ListView list;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,7 +59,7 @@ public class ListHub extends Activity {
 		
 	}
 	private void backUpToDo(String titlePref, String titleKey,String statePref,ToDoListItem item){
-		saveToDoList saver=new saveToDoList(this,titlePref,titleKey,statePref);
+	    saveToDoList saver=new saveToDoList(this,titlePref,titleKey,statePref);
 		saver.saveToDoListItem(item);
 	}
 	private ToDoListItem unBundleToDo(Bundle b){
@@ -75,9 +76,12 @@ public class ListHub extends Activity {
 	    	startActivity(email);
 	 }
 	 public void checkOffToDo(ArrayList<Integer>positions){
+		 saveToDoList saver=new saveToDoList(this,getString(R.string.prefs_titles),getString(R.string.titles_key),getString(R.string.prefs_state));
 		 for(int position:positions){
-			 StrikeThroughPainter.paint((TextView)list.getChildAt(position),position);
-			 items.getItem(position).markAsCompleted();
+			 ToDoListItem item=items.getItem(position);
+			 item.markAsCompleted();
+			 saver.updateState(item);
+			 
 		 }
 	 }
 	 private ArrayList<ToDoListItem> arrayAdapterSubList(ArrayList<Integer> positions){

@@ -13,7 +13,7 @@ public class saveToDoList{
 	}
 	public void saveToDoListItem(ToDoListItem item){
 		backUptheTitle(helper.getTitlePrefs(), item.getTitle());
-		backUpState(helper.getStatePrefs().edit(),item.getTitle(),item.isSelected());
+		backUpState(helper.getStatePrefs().edit(),item.getTitle(),item.toDoCompleted());
 		backUpNotes(helper.getTitlePrefs().edit(),item.getTitle(),item.gettoDo());
 	}
 	private void backUpState(SharedPreferences.Editor pref, String key, Boolean value){
@@ -30,5 +30,8 @@ public class saveToDoList{
 	private void backUpNotes(SharedPreferences.Editor edit, String key, String note){
 		edit.putString(key, note);
 		edit.commit();
+	}
+	public void updateState(ToDoListItem item){
+		backUpState(helper.getStatePrefs().edit(),item.getTitle(),item.toDoCompleted());
 	}
 }
