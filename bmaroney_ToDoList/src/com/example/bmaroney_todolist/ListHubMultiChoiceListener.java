@@ -54,7 +54,8 @@ public class ListHubMultiChoiceListener implements AbsListView.MultiChoiceModeLi
 	    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
 	        switch (item.getItemId()) {
 	            case R.id.delete:
-	                mode.finish(); // Action picked, so close the CAB
+	                callingAct.deleteToDo(positions);
+	            	mode.finish(); // Action picked, so close the CAB
 	                return true;
 	            case R.id.email:
 	            	callingAct.sendEmail(positions);

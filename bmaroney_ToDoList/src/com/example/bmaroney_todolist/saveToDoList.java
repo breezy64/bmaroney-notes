@@ -34,4 +34,19 @@ public class saveToDoList{
 	public void updateState(ToDoListItem item){
 		backUpState(helper.getStatePrefs().edit(),item.getTitle(),item.toDoCompleted());
 	}
+	public void delete(ToDoListItem item){
+		removeFromPreferences(helper.getStatePrefs().edit(),item.getTitle());
+		removeFromPreferences(helper.getTitlePrefs().edit(),item.getTitle());
+		removeFromTitleSet(helper.getTitlePrefs().edit(),item.getTitle());
+		
+	}
+	private void removeFromPreferences(SharedPreferences.Editor pref, String key){
+		pref.remove(key);
+		pref.commit();
+	}
+	private void removeFromTitleSet(SharedPreferences.Editor pref, String key){
+		Set<String> titles=helper.getTitlePrefs().getStringSet(helper.getKey(), null);
+		titles.remove(key);
+		pref.putStringSet(helper.getKey(),titles);
+	}
 }

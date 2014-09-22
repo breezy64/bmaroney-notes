@@ -14,11 +14,11 @@ public class ListHub extends Activity {
 	private static final int createToDo_result=1;
 	private ArrayAdapter<ToDoListItem> items;
 	private ListView list;
-	@Override
+		@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_hub);
-		loadToDoList();
+		loadToDoList();	
 	}
 
 	@Override
@@ -81,6 +81,13 @@ public class ListHub extends Activity {
 			 
 		 }
 	 }
+	 public void deleteToDo(ArrayList<Integer> positions){
+		 saveToDoList saver=new saveToDoList(this,getString(R.string.prefs_titles),getString(R.string.titles_key),getString(R.string.prefs_state));
+		 for(ToDoListItem item:arrayAdapterSubList(positions)){
+				 items.remove(item);
+				 saver.delete(item);
+			 }
+	 }
 	 private ArrayList<ToDoListItem> arrayAdapterSubList(ArrayList<Integer> positions){
 		 ArrayList<ToDoListItem> subList=new ArrayList<ToDoListItem>();
 		 for(int position:positions){
@@ -88,5 +95,5 @@ public class ListHub extends Activity {
 		 }
 		 return subList;
 	 }
-	 
+		 
 }
