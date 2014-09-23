@@ -18,5 +18,7 @@
     <string name="Email">action_email</string>
     <string name="action_email">Email</string>
     <string name="action_markCompleted">Mark as Completed</string>
+    <string name="action_archiveMode">Archive Mode</string>
+    <string name="action_sendToArchive"/>
 
 </resources>
