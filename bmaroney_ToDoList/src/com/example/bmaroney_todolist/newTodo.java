@@ -1,6 +1,6 @@
 package com.example.bmaroney_todolist;
 
-import com.example.bmaroney_todolist.R;
+import com.example.bmaroney_notes.R;
 
 import android.app.Activity;
 import android.content.Intent;

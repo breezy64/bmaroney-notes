@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import com.example.bmaroney_notes.R;
 
 public class CheckBoxAdapter extends ArrayAdapter<ToDoListItem> {
 	private LayoutInflater mInflater;

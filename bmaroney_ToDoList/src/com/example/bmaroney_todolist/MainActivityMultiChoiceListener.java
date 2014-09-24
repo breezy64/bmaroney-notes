@@ -15,7 +15,7 @@
 package com.example.bmaroney_todolist;
 import java.util.ArrayList;
 
-import com.example.bmaroney_todolist.R;
+import com.example.bmaroney_notes.R;
 
 import android.widget.AbsListView;
 import android.widget.ListView;
