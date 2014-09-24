@@ -1,4 +1,4 @@
-package com.example.bmaroney_notes;
+package com.example.bmaroney_todolist;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.list_hub, menu);
+		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
 
@@ -46,19 +46,19 @@ public class MainActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data ){
 		if(requestCode==this.createToDo_result && resultCode==this.RESULT_OK){
 			items.add(unBundleToDo(data.getExtras()));
-			backUpToDo(getString(R.string.prefs_ToDos),unBundleToDo(data.getExtras()));
+			backUpToDo(getString(R.string.prefs_ToDos),getString(R.string.StringSetKey),unBundleToDo(data.getExtras()));
 		}
 	}
 	private void loadToDoList(){
 		items=new CheckBoxAdapter(this,R.layout.test);
-		ToDoListLoader loader=new ToDoListLoader(this,getString(R.string.prefs_ToDos),R.id.listView1);
+		ToDoListLoader loader=new ToDoListLoader(this,getString(R.string.prefs_ToDos),getString(R.string.StringSetKey),R.id.listView1);
 		loader.loadToDoList(items);
 		list=loader.getListView(R.id.listView1);
 		list.setMultiChoiceModeListener(new MainActivityMultiChoiceListener(this,R.menu.context_menu,list));
 		
 	}
-	private void backUpToDo(String ToDoPref,ToDoListItem item){
-	    ToDoListSaver saver=new ToDoListSaver(this,ToDoPref);
+	private void backUpToDo(String ToDoPref,String setKey,ToDoListItem item){
+	    ToDoListSaver saver=new ToDoListSaver(this,ToDoPref,setKey);
 		saver.saveToDoListItem(item);
 	}
 	private ToDoListItem unBundleToDo(Bundle b){
@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
 	    	startActivity(email);
 	 }
 	 public void checkOffToDo(ArrayList<Integer>positions){
-		 ToDoListSaver saver=new ToDoListSaver(this,getString(R.string.ToDO_text));
+		 ToDoListSaver saver=new ToDoListSaver(this,getString(R.string.prefs_ToDos),getString(R.string.StringSetKey));
 		 for(int position:positions){
 			 ToDoListItem item=items.getItem(position);
 			 item.markAsCompleted();
@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
 		 }
 	 }
 	 public void deleteToDo(ArrayList<Integer> positions){
-		 ToDoListSaver saver=new ToDoListSaver(this,getString(R.string.prefs_ToDos));
+		 ToDoListSaver saver=new ToDoListSaver(this,getString(R.string.prefs_ToDos),getString(R.string.StringSetKey));
 		 for(ToDoListItem item:arrayAdapterSubList(positions)){
 				 items.remove(item);
 				 saver.delete(item);

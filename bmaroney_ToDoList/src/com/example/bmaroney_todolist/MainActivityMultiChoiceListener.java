@@ -15,6 +15,8 @@
 package com.example.bmaroney_todolist;
 import java.util.ArrayList;
 
+import com.example.bmaroney_todolist.R;
+
 import android.widget.AbsListView;
 import android.widget.ListView;
 import android.app.Activity;
@@ -23,11 +25,11 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-public class ListHubMultiChoiceListener implements AbsListView.MultiChoiceModeListener {
-	    private ListHub callingAct;
+public class MainActivityMultiChoiceListener implements AbsListView.MultiChoiceModeListener {
+	    private MainActivity callingAct;
 	    private int menuID;
 	    private ArrayList<Integer> positions;
-		public ListHubMultiChoiceListener(ListHub act, int menu,ListView list){
+		public MainActivityMultiChoiceListener(MainActivity act, int menu,ListView list){
 			callingAct=act;
 	    	menuID=menu;
 	    	list.setChoiceMode(list.CHOICE_MODE_MULTIPLE_MODAL);

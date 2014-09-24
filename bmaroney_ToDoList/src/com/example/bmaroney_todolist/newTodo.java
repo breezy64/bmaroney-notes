@@ -1,5 +1,7 @@
 package com.example.bmaroney_todolist;
 
+import com.example.bmaroney_todolist.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +19,7 @@ public class newTodo extends Activity {
 	public void sendToDo(View view){
 		Intent item=new Intent();
 		int result=this.RESULT_OK;
-		if(getToDoTitle().equals("")){
+		if(getToDo().equals("")){
 			result=this.RESULT_CANCELED;
 		}
 		item.putExtras(bundleUpTheContent());
@@ -25,11 +27,8 @@ public class newTodo extends Activity {
 		finish();
 		
 	}
-	private String getToDoTitle(){
-		return getTextFromTextBox(R.id.todo_Title);
-	}
-	private String getToDoNotes(){
-		return getTextFromTextBox(R.id.todo_Notes);
+	private String getToDo(){
+		return getTextFromTextBox(R.id.todoText);
 	}
 	private String getTextFromTextBox(int id){
 		EditText title=(EditText) this.findViewById(id);
@@ -37,8 +36,7 @@ public class newTodo extends Activity {
 	}
 	public Bundle bundleUpTheContent(){
 		Bundle content=new Bundle();
-		content.putString(getString(R.string.titles_text),getToDoTitle());
-		content.putString(getString(R.string.notes_text),getToDoNotes());
+		content.putString(getString(R.string.ToDO_text),getToDo());
 		return content;
 	}
 	

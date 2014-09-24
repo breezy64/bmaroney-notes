@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">&quot;bmaroney-ToDoList&quot;</string>
+    <string name="app_name">&quot;bmaroney-notes&quot;</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_delete">Delete</string>
     <string name="action_new">New Todo item</string>
-    <string name="activity_ListHub_title">Todos</string>
-    <string name="action_viewStats">Stats</string>
-    <string name="prefs_titles">ToDoListItem_titles</string>
-    <string name="prefs_state">State Info</string>
-    <string name="titles_key">ToDoList_titleKey</string>
+    <string name="activity_main_title">Todos</string>
+    <string name="action_viewStats">Summary</string>
+    <string name="prefs_ToDos">ToDoList Items</string>
     <string name="activity_newTodo">Create a new Todo</string>
     <string name="button_Create">Create</string>
-    <string name="titles_text">textTitle</string>
-    <string name="notes_text">textNote</string>
+    <string name="ToDO_text">textTitle</string>
     <string name="Email">action_email</string>
     <string name="action_email">Email</string>
     <string name="action_markCompleted">Mark as Completed</string>
     <string name="action_archiveMode">Archive Mode</string>
     <string name="action_sendToArchive"/>
+    <string name="todoText_hint">Enter a ToDo</string>
+    <string name="StringSetKey">key</string>
 
 </resources>

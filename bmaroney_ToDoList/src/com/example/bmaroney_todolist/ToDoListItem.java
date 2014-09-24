@@ -5,21 +5,18 @@ import java.util.List;
 import android.os.Bundle;
 
 public class ToDoListItem {
-	private String Title;
-	private String todo;
-	private boolean isChecked=false;
+	private String Todo;
 	private boolean isDone=false;
 	
-	public ToDoListItem(String title, String todo){
-		Title=title;
-		this.todo=todo;
+	public ToDoListItem(String ToDo){
+		Todo=ToDo;
 	}
-	public ToDoListItem(String title, String todo, boolean state){
-		this(title,todo);
+	public ToDoListItem(String ToDo, boolean state){
+		this(ToDo);
 		isDone=state;
 	}
 	public String printToDoListItem(){
-		return "Title: "+getTitle()+"\n"+"todo: "+gettoDo()+"\n";
+		return ToDoListItem.getToDo(this)+"\n";
 	}
 	public static String printToDoList(List<ToDoListItem> itms){
 		String result="";
@@ -28,27 +25,18 @@ public class ToDoListItem {
 		}
 		return result;
 	}
+	public static String getToDo(ToDoListItem toDoListItem) {
+		return toDoListItem.getToDo();
+	}
 	@Override
 	public String toString(){
 		return printToDoListItem();
 	}
-	public String getTitle(){
-		return Title;
+	public String getToDo(){
+		return Todo;
 	}
-	public String gettoDo(){
-		return todo;
-	}
-	public void setTitle(String newTitle){
-		Title=newTitle;
-	}
-	public void setToDo(String newTodo){
-		todo=newTodo;
-	}
-	public boolean isSelected(){
-		return isChecked;
-	}
-	public void setSelected(){
-		isChecked=true;
+	public void setToDo(String newTitle){
+		Todo=newTitle;
 	}
 	public boolean toDoCompleted(){
 		return isDone;

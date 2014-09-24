@@ -5,40 +5,28 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/todo_Title"
-        android:inputType="text"
-        android:hint="Enter a title"
+        android:id="@+id/todoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="57dp"
-        android:ems="10" />
-
-    <EditText
-        android:id="@+id/todo_Notes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/todo_Title"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="23dp"
         android:ems="10"
-        android:hint="Enter some notes"
-        android:inputType="textMultiLine" />
+        android:hint="@string/todoText_hint"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/button_Create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/todo_Notes"
+        android:layout_below="@+id/todoText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="91dp"
         android:onClick="sendToDo"
         android:text="@string/button_Create" />
 

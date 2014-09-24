@@ -12,8 +12,8 @@ public class ToDoListLoader{
 	private ToDoListPreferenceHelper helper;
 	private Activity act;
 	private ListView list;
-	public ToDoListLoader(Activity act,String titleprefs_key,String titlekeys,String stateprefs_key,int listViewID){
-		helper=new ToDoListPreferenceHelper(act,titleprefs_key,titlekeys,stateprefs_key);
+	public ToDoListLoader(Activity act,String toDos,String setKey, int listViewID){
+		helper=new ToDoListPreferenceHelper(act,toDos,setKey);
 		this.act=act;
 		list=getListView(listViewID);
 	}
@@ -24,15 +24,11 @@ public class ToDoListLoader{
 		}
 	}
 	private void getToDoListItems(ArrayAdapter<ToDoListItem> items){
-		Set<String> titles=helper.getTitlePrefs().getStringSet(helper.getKey(),null);
-		for(String title:titles){
-			ToDoListItem item=new ToDoListItem(title,helper.getTitlePrefs().getString(title,""),helper.getStatePrefs().getBoolean(title, false));
+		Set<String> titles=helper.getToDoPrefs().getStringSet(helper.getSetKey(),null);
+		for(String ToDo:titles){
+			ToDoListItem item=new ToDoListItem(ToDo,helper.getToDoPrefs().getBoolean(ToDo, false));
 			items.add(item);
 		}
-	}
-	private void checkToDo(ToDoListItem item, ListView lv, Long position){
-		lv.setChoiceMode(lv.CHOICE_MODE_MULTIPLE);
-		lv.setItemChecked(position.intValue(), item.toDoCompleted());
 	}
 	private void bindAdaptertoListView(ArrayAdapter<ToDoListItem> items){
 		list.setAdapter(items);
