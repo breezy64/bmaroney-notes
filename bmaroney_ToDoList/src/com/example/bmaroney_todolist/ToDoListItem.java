@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 public class ToDoListItem {
 	private String Todo;
-	private boolean isDone=false;
+	private Boolean isDone=false;
 	
 	public ToDoListItem(String ToDo){
 		Todo=ToDo;
@@ -38,10 +38,21 @@ public class ToDoListItem {
 	public void setToDo(String newTitle){
 		Todo=newTitle;
 	}
-	public boolean toDoCompleted(){
+	public Boolean toDoCompleted(){
 		return isDone;
 	}
 	public void markAsCompleted(){
 		isDone=true;
+	}
+	@Override
+	public boolean equals(Object obj){
+		if(this==obj){
+			return true;
+		}
+		else if(this.getClass()!=obj.getClass()){
+			return false;
+		}
+		ToDoListItem item=(ToDoListItem)obj;
+		return (this.Todo.equals(item.getToDo()) && item.toDoCompleted().equals(item.getToDo()));
 	}
 }

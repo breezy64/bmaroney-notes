@@ -1,5 +1,7 @@
 package com.example.bmaroney_todolist;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import android.app.Activity;
@@ -10,30 +12,23 @@ import android.widget.TextView;
 
 public class ToDoListLoader{
 	private ToDoListPreferenceHelper helper;
-	private Activity act;
-	private ListView list;
-	public ToDoListLoader(Activity act,String toDos,String setKey, int listViewID){
+	ArrayList<ToDoListItem> ToDos;
+	public ToDoListLoader(Activity act,String toDos,String setKey){
 		helper=new ToDoListPreferenceHelper(act,toDos,setKey);
-		this.act=act;
-		list=getListView(listViewID);
+		ToDos=new ArrayList<ToDoListItem>();
 	}
-	public void loadToDoList(ArrayAdapter<ToDoListItem> items){
-		bindAdaptertoListView(items);
-		if(helper.isEmpty()){
-			getToDoListItems(items);
+	public ArrayList<ToDoListItem> loadToDoList(){
+		if(helper.isEmpty() && ToDos.isEmpty() ){
+			getToDoListItems();
 		}
+		return ToDos;
 	}
-	private void getToDoListItems(ArrayAdapter<ToDoListItem> items){
+	private void getToDoListItems(){
 		Set<String> titles=helper.getToDoPrefs().getStringSet(helper.getSetKey(),null);
 		for(String ToDo:titles){
 			ToDoListItem item=new ToDoListItem(ToDo,helper.getToDoPrefs().getBoolean(ToDo, false));
-			items.add(item);
+			ToDos.add(item);
 		}
-	}
-	private void bindAdaptertoListView(ArrayAdapter<ToDoListItem> items){
-		list.setAdapter(items);
-	}
-	public ListView getListView(int listViewID){
-		return (ListView) act.findViewById(listViewID);
+		
 	}
 }

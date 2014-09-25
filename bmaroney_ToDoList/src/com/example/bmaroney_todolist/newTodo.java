@@ -17,13 +17,9 @@ public class newTodo extends Activity {
 	    setContentView(R.layout.activity_newtodo);
 	}
 	public void sendToDo(View view){
-		Intent item=new Intent();
-		int result=this.RESULT_OK;
-		if(getToDo().equals("")){
-			result=this.RESULT_CANCELED;
-		}
-		item.putExtras(bundleUpTheContent());
-		this.setResult(result,item);
+		ToDoListController controller=new ToDoListController(this);
+		if(!getToDo().equals(""))
+		controller.saveToDoListItem(new ToDoListItem(getToDo(),false));
 		finish();
 		
 	}
@@ -33,11 +29,6 @@ public class newTodo extends Activity {
 	private String getTextFromTextBox(int id){
 		EditText title=(EditText) this.findViewById(id);
 		return title.getText().toString();
-	}
-	public Bundle bundleUpTheContent(){
-		Bundle content=new Bundle();
-		content.putString(getString(R.string.ToDO_text),getToDo());
-		return content;
 	}
 	
 }
