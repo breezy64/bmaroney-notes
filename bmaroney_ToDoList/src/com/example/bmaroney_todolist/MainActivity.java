@@ -13,21 +13,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
-	private static final int createToDo_result=1;
-	private ToDoListController controller;
+	protected ToDoListController controller;
 	private ArrayAdapter<ToDoListItem> items;
-		@Override
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		controller=new ToDoListController(this);
+		controller=new ToDoListController(this,R.string.prefs_ToDos);
 		items=new CheckBoxAdapter(this,R.layout.test);
 		ListView list=(ListView)findViewById(R.id.listView1);
 		list.setAdapter(items);
 		list.setMultiChoiceModeListener(new MainActivityMultiChoiceListener(this,R.menu.context_menu,list));
 		controller.loadToDoList(items);	
 	}
- 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -49,7 +47,27 @@ public class MainActivity extends Activity {
 		if (id == R.id.create_todo) {
 			createTodo();
 		}
+		else if(id==R.id.archiveMode){
+			startArchiveMode();
+		}
 		return super.onOptionsItemSelected(item);
+	}
+	private void startArchiveMode() {
+		Intent arch=new Intent(this,ArchiveActivity.class);
+		startActivity(arch);
+		
+	}
+	protected ToDoListController getController() {
+		return controller;
+	}
+	protected ArrayAdapter<ToDoListItem> getItems() {
+		return items;
+	}
+	protected void setController(ToDoListController controller) {
+		this.controller = controller;
+	}
+	protected void setItems(ArrayAdapter<ToDoListItem> items) {
+		this.items = items;
 	}
 	private void refresh(){
 		items.clear();
@@ -57,7 +75,7 @@ public class MainActivity extends Activity {
 	}
 	private void createTodo(){
 		Intent createTodo = new Intent(this, newTodo.class);
-		this.startActivityForResult(createTodo,createToDo_result);
+		this.startActivity(createTodo);
 	}
 	 public void sendEmail(ArrayList<Integer> positions){
 	    	Intent email=new Intent(Intent.ACTION_SEND);

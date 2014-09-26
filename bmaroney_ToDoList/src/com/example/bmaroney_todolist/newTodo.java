@@ -17,7 +17,7 @@ public class newTodo extends Activity {
 	    setContentView(R.layout.activity_newtodo);
 	}
 	public void sendToDo(View view){
-		ToDoListController controller=new ToDoListController(this);
+		ToDoListController controller=new ToDoListController(this,R.string.prefs_ToDos);
 		if(!getToDo().equals(""))
 		controller.saveToDoListItem(new ToDoListItem(getToDo(),false));
 		finish();

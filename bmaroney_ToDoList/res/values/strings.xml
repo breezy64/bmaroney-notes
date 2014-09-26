@@ -19,5 +19,7 @@
     <string name="action_sendToArchive"/>
     <string name="todoText_hint">Enter a ToDo</string>
     <string name="StringSetKey">key</string>
+    <string name="prefs_archive">archive</string>
+    <string name="action_normalMode">Normal Mode</string>
 
 </resources>
