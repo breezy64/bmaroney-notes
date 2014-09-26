@@ -143,7 +143,7 @@ public class MainActivity extends Activity {
 		 items.remove(item);
 		 controller.remove(item);
 	 }
-	private ArrayList<ToDoListItem> arrayAdapterSubList(ArrayList<Integer> positions){
+	protected ArrayList<ToDoListItem> arrayAdapterSubList(ArrayList<Integer> positions){
 		 ArrayList<ToDoListItem> subList=new ArrayList<ToDoListItem>();
 		 for(int position:positions){
 			 subList.add(items.getItem(position));

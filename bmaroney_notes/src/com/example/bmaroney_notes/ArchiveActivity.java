@@ -31,9 +31,9 @@ public class ArchiveActivity extends MainActivity{
 		getController().softReset();
 	}
 	public void unarchive(ArrayList<Integer> positions) {
-		for(int i:positions){
-			getController().unarchive(getItems().getItem(i));
-			getItems().remove(getItems().getItem(i));
+		for(ToDoListItem item:super.arrayAdapterSubList(positions)){
+			getController().unarchive(item);
+			getItems().remove(item);
 		}
 		
 	}
