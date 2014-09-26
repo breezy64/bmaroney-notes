@@ -12,4 +12,8 @@
           android:showAsAction="ifRoom"
           android:id="@+id/action_mark"
           android:icon="@drawable/ic_action_accept" />
+    <item android:title="@string/Archive"
+          android:showAsAction="ifRoom"
+          android:id="@+id/action_sendToArchive"
+          android:icon="@drawable/ic_action_save" />
 </menu>

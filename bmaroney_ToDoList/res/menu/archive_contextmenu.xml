@@ -8,5 +8,8 @@
           android:id="@+id/email"
           android:showAsAction="ifRoom"
           android:icon="@drawable/ic_action_email" />
+    <item android:title="@string/action_unarch"
+          android:id="@+id/unarch"
+          android:showAsAction="ifRoom" />
 </menu>
 

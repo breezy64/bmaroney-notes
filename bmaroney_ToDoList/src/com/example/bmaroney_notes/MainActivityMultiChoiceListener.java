@@ -67,6 +67,13 @@ public class MainActivityMultiChoiceListener implements AbsListView.MultiChoiceM
 	            	callingAct.checkOffToDo(positions);
 	            	mode.finish(); // Action picked, so close the CAB
 	                return true;
+	            case R.id.action_sendToArchive:
+	            	callingAct.sendtoArchive(positions);
+	            	mode.finish(); // Action picked, so close the CAB
+	                return true;
+	            case R.id.unarch:
+	            	((ArchiveActivity)callingAct).unarchive(positions);
+	            	mode.finish();
 	            default:
 	                return false;
 	        }
@@ -82,7 +89,7 @@ public class MainActivityMultiChoiceListener implements AbsListView.MultiChoiceM
 				positions.add(position);
 			}
 			else if(!checked){
-				positions.remove(position);
+				positions.remove((Object)position);
 			}
 			
 			

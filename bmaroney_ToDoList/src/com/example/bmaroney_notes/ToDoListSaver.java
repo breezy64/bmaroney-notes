@@ -42,6 +42,9 @@ public class ToDoListSaver{
 	private void removeFromKeySet(SharedPreferences.Editor pref, String key){
 		Set<String> titles=helper.getToDoPrefs().getStringSet(helper.getSetKey(), null);
 		titles.remove(key);
+		pref.remove(helper.getSetKey());
+		pref.commit();
 		pref.putStringSet(helper.getSetKey(),titles);
+		pref.commit();
 	}
 }

@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
-	protected ToDoListController controller;
+	private ToDoListController controller;
 	private ArrayAdapter<ToDoListItem> items;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -95,16 +95,26 @@ public class MainActivity extends Activity {
 	 public void deleteToDo(ArrayList<Integer> positions){
 		 ToDoListSaver saver=new ToDoListSaver(this,getString(R.string.prefs_ToDos),getString(R.string.StringSetKey));
 		 for(ToDoListItem item:arrayAdapterSubList(positions)){
-				 items.remove(item);
-				 controller.remove(item);
+			 delete(item);
 			 }
 	 }
-	 private ArrayList<ToDoListItem> arrayAdapterSubList(ArrayList<Integer> positions){
+	 private void delete(ToDoListItem item) {
+		 items.remove(item);
+		 controller.remove(item);
+	 }
+	private ArrayList<ToDoListItem> arrayAdapterSubList(ArrayList<Integer> positions){
 		 ArrayList<ToDoListItem> subList=new ArrayList<ToDoListItem>();
 		 for(int position:positions){
 			 subList.add(items.getItem(position));
 		 }
 		 return subList;
 	 }
+	public void sendtoArchive(ArrayList<Integer> positions) {
+		for(ToDoListItem item:arrayAdapterSubList(positions)){
+			controller.sendToArchive(item);
+			delete(item);
+		}
+		
+	}
 		 
 }

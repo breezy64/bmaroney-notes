@@ -15,9 +15,12 @@ public class ToDoListController {
 
 	public ToDoListController(Activity main, int prefKey){
 		this.ToDoAct=main;
-		loader=getLoader(main,prefKey);
+		init(prefKey);
+	}
+	private void init(int prefKey){
+		loader=getLoader(ToDoAct,prefKey);
 		toDoList=loader.loadToDoList();
-		saver=new ToDoListSaver(main,main.getString(prefKey),main.getString(R.string.StringSetKey));
+		saver=new ToDoListSaver(ToDoAct,ToDoAct.getString(prefKey),ToDoAct.getString(R.string.StringSetKey));
 	}
 
 	private static ToDoListLoader getLoader(Activity act, int prefKey) {
@@ -40,5 +43,22 @@ public class ToDoListController {
 		toDoList.remove(item);
 		saver.delete(item);
 		
+	}
+
+	public void sendToArchive(ToDoListItem item) {
+		ToDoListSaver arch=new ToDoListSaver(ToDoAct,ToDoAct.getString(R.string.prefs_archive),ToDoAct.getString(R.string.StringSetKey));
+		arch.saveToDoListItem(item);
+	}
+	public void softReset(){
+		loader=null;
+	}
+	public void hardReset(int prefKey){
+		softReset();
+		init(prefKey);
+	}
+	public void unarchive(ToDoListItem item) {
+		ToDoListSaver arch=new ToDoListSaver(ToDoAct,ToDoAct.getString(R.string.prefs_ToDos),ToDoAct.getString(R.string.StringSetKey));
+		arch.saveToDoListItem(item);
+		remove(item);
 	}
 }
