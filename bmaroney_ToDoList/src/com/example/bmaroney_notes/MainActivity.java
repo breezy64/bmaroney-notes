@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	private ToDoListController controller;
@@ -53,7 +54,18 @@ public class MainActivity extends Activity {
 		else if(id==R.id.stats){
 			startSummaryActivity();
 		}
+		else if(id==R.id.emailAll){
+			sendMassEmail();
+		}
 		return super.onOptionsItemSelected(item);
+	}
+	private void sendMassEmail() {
+		try{
+			startActivity(generateEmailIntent(controller.getMassEmailText()));
+		}catch (Exception ex){
+			Toast.makeText(this, "No items to email", Toast.LENGTH_SHORT).show();
+		}
+		
 	}
 	private void startSummaryActivity() {
 		Intent intent=new Intent(this,SummaryActivity.class);
@@ -86,22 +98,21 @@ public class MainActivity extends Activity {
 		this.startActivity(createTodo);
 	}
 	 public void sendEmail(ArrayList<Integer> positions){
-	    	Intent email=new Intent(Intent.ACTION_SEND);
-	    	email.setType("message/rfc822");
-	    	email.putExtra(Intent.EXTRA_TEXT,ToDoListItem.printToDoList(arrayAdapterSubList(positions)));
-	    	startActivity(email);
+	    	startActivity(generateEmailIntent(ToDoListItem.printToDoList(arrayAdapterSubList(positions))));
 	 }
-	 public void checkOffToDo(ArrayList<Integer>positions){
-		 ToDoListSaver saver=new ToDoListSaver(this,getString(R.string.prefs_ToDos),getString(R.string.StringSetKey));
+	 private Intent generateEmailIntent(String emailText){
+			Intent email=new Intent(Intent.ACTION_SEND);
+	    	email.setType("message/rfc822");
+	    	email.putExtra(Intent.EXTRA_TEXT,emailText);
+	    	return email;
+	 }
+	 public void toggleState(ArrayList<Integer>positions){
 		 for(int position:positions){
 			 ToDoListItem item=items.getItem(position);
-			 item.markAsCompleted();
-			 saver.updateState(item);
-			 
+			 controller.toggleState(item);
 		 }
 	 }
 	 public void deleteToDo(ArrayList<Integer> positions){
-		 ToDoListSaver saver=new ToDoListSaver(this,getString(R.string.prefs_ToDos),getString(R.string.StringSetKey));
 		 for(ToDoListItem item:arrayAdapterSubList(positions)){
 			 delete(item);
 			 }

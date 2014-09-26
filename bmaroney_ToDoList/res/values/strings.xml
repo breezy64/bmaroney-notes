@@ -14,7 +14,7 @@
     <string name="ToDO_text">textTitle</string>
     <string name="Email">action_email</string>
     <string name="action_email">Email</string>
-    <string name="action_markCompleted">Mark as Completed</string>
+    <string name="action_markCompleted">Check/Uncheck</string>
     <string name="action_archiveMode">Archive Mode</string>
     <string name="action_sendToArchive"/>
     <string name="todoText_hint">Enter a ToDo</string>
@@ -24,6 +24,7 @@
     <string name="Archive">Archive ToDo</string>
     <string name="action_unarch">Unarchive</string>
     <string name="SummaryActivity">Summary</string>
+    <string name="action_EmailAll">Email All ToDos</string>
     
 
 </resources>

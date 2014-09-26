@@ -61,4 +61,22 @@ public class ToDoListController {
 		arch.saveToDoListItem(item);
 		remove(item);
 	}
+	public void toggleState(ToDoListItem item) {
+		item.toggleState(); 
+		saver.updateState(item);
+		
+	}
+	public String getMassEmailText() throws Exception {
+		return ToDoListItem.printToDoList(loadAll());
+	}
+	private List<ToDoListItem> loadAll() throws Exception {
+		ToDoListLoader archive=new ToDoListLoader(this.ToDoAct,ToDoAct.getString(R.string.prefs_archive),ToDoAct.getString(R.string.StringSetKey));
+		ToDoListLoader normal=new ToDoListLoader(this.ToDoAct,ToDoAct.getString(R.string.prefs_ToDos),ToDoAct.getString(R.string.StringSetKey));
+		List<ToDoListItem> all=archive.loadToDoList();
+		all.addAll(normal.loadToDoList());
+		if(all.isEmpty()){
+			throw new Exception();
+		}
+		return all;
+	}
 }

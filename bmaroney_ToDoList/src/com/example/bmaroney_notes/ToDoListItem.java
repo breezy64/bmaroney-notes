@@ -44,6 +44,9 @@ public class ToDoListItem {
 	public void markAsCompleted(){
 		isDone=true;
 	}
+	public void toggleState(){
+		isDone=!isDone;
+	}
 	@Override
 	public boolean equals(Object obj){
 		if(this==obj){
