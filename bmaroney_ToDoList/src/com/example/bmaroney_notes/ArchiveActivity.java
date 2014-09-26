@@ -1,8 +1,5 @@
-package com.example.bmaroney_todolist;
+package com.example.bmaroney_notes;
 
-import com.example.bmaroney_notes.R;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ListView;

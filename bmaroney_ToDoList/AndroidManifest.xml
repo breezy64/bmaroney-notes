@@ -22,12 +22,12 @@
             </intent-filter>
         </activity>
         <activity android:parentActivityName=".MainActivity" 
-            	  android:name="com.example.bmaroney_todolist.newTodo" 
+            	  android:name="com.example.bmaroney_notes.newTodo" 
             	  android:label="@string/activity_newTodo" 
             	  android:theme="@style/AppTheme">                              
         </activity>
         <activity android:parentActivityName=".MainActivity" 
-            	  android:name="com.example.bmaroney_todolist.ArchiveActivity" 
+            	  android:name="com.example.bmaroney_notes.ArchiveActivity" 
             	  android:label="@string/action_archiveMode" 
             	  android:theme="@style/AppTheme">                              
         </activity>

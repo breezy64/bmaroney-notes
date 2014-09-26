@@ -1,4 +1,4 @@
-package com.example.bmaroney_todolist;
+package com.example.bmaroney_notes;
 
 import java.util.List;
 
