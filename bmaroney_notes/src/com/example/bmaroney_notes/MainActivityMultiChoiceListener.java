@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2014 The Android Open Source Project
- *
+ * Copyright (C) 2014 Byron Maroney
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,6 +13,10 @@
  * See the License for the specific language governing permissions and
  */
 package com.example.bmaroney_notes;
+/**
+ * My implementation of a MulitChoiceListener is based on the ones presented in the
+ * Android Developer Guides (http://developer.android.com/guide/topics/ui/menus.html)
+ */
 import java.util.ArrayList;
 
 import com.example.bmaroney_notes.R;
@@ -35,7 +39,6 @@ public class MainActivityMultiChoiceListener implements AbsListView.MultiChoiceM
 	    	list.setChoiceMode(list.CHOICE_MODE_MULTIPLE_MODAL);
 	    	positions=new ArrayList<Integer>();
 	    }
-		// Called when the action mode is created; startActionMode() was called
 	    @Override
 	    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 	        // Inflate a menu resource providing context menu items
@@ -44,8 +47,6 @@ public class MainActivityMultiChoiceListener implements AbsListView.MultiChoiceM
 	        return true;
 	    }
 
-	    // Called each time the action mode is shown. Always called after onCreateActionMode, but
-	    // may be called multiple times if the mode is invalidated.
 	    @Override
 	    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
 	        return false; // Return false if nothing is done

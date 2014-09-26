@@ -1,4 +1,25 @@
+/** Copyright (C) 2006 The Android Open Source Project
+ *  Copyright 2014 Byron Maroney
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
 package com.example.bmaroney_notes;
+
+/**
+ I included The Android Open Source Project in my license header since my implementation of onOptionsItemSelected
+ is based on the implementation available on the Android Develepor Guides 
+ (http://developer.android.com/training/basics/firstapp/starting-activity.html)
+ */
 
 import java.util.ArrayList;
 
@@ -41,9 +62,6 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.create_todo) {
 			createTodo();
@@ -63,7 +81,8 @@ public class MainActivity extends Activity {
 		try{
 			startActivity(generateEmailIntent(controller.getMassEmailText()));
 		}catch (Exception ex){
-			Toast.makeText(this, "No items to email", Toast.LENGTH_SHORT).show();
+			//I learnt about Toast via the Android Developer guides (http://developer.android.com/guide/topics/ui/notifiers/toasts.html)
+			Toast.makeText(this, "No items to email", Toast.LENGTH_SHORT).show(); 
 		}
 		
 	}
@@ -100,6 +119,9 @@ public class MainActivity extends Activity {
 	 public void sendEmail(ArrayList<Integer> positions){
 	    	startActivity(generateEmailIntent(ToDoListItem.printToDoList(arrayAdapterSubList(positions))));
 	 }
+	 /*I learnt how to use to make intents send email from this post on stackoverflow: 
+	 http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application
+	 */
 	 private Intent generateEmailIntent(String emailText){
 			Intent email=new Intent(Intent.ACTION_SEND);
 	    	email.setType("message/rfc822");
