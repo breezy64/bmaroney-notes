@@ -23,5 +23,7 @@
     <string name="action_normalMode">Normal Mode</string>
     <string name="Archive">Archive ToDo</string>
     <string name="action_unarch">Unarchive</string>
+    <string name="SummaryActivity">Summary</string>
+    
 
 </resources>

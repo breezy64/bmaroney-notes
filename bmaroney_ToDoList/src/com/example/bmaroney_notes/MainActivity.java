@@ -50,7 +50,15 @@ public class MainActivity extends Activity {
 		else if(id==R.id.archiveMode){
 			startArchiveMode();
 		}
+		else if(id==R.id.stats){
+			startSummaryActivity();
+		}
 		return super.onOptionsItemSelected(item);
+	}
+	private void startSummaryActivity() {
+		Intent intent=new Intent(this,SummaryActivity.class);
+		startActivity(intent);
+		
 	}
 	private void startArchiveMode() {
 		Intent arch=new Intent(this,ArchiveActivity.class);
