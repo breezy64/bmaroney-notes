@@ -12,7 +12,7 @@ public class ArchiveActivity extends MainActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		setItems(new ArrayAdapter<ToDoListItem>(this,android.R.layout.simple_list_item_activated_1));
+		setItems(new CheckBoxAdapter(this,R.layout.test));
 		setController(new ToDoListController(this,R.string.prefs_archive));
 		getController().hardReset(R.string.prefs_archive);
 		getController().loadToDoList(getItems());

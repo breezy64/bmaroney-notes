@@ -31,23 +31,25 @@ public class SummaryController {
 		
 	}
 	private void getArchiveModeStats(ArrayList<ToDoListItem> loadToDoList) {
-		if(loadToDoList.size()==0) return;
-		for(ToDoListItem item: loadToDoList){
-			this.normal_numToDosArchived++;
-			if(item.toDoCompleted()){
-				this.archive_numToDosChecked++;
-			}
-			else{
-				this.archive_numToDosUnchecked++;
+		if(!loadToDoList.isEmpty()){
+			for(ToDoListItem item: loadToDoList){
+				this.normal_numToDosArchived++;
+				if(item.toDoCompleted()){
+					this.archive_numToDosChecked++;
+				}
+				else{
+					this.archive_numToDosUnchecked++;
+				}
 			}
 		}
+		
 		
 	}
 	public String summary(){
 		return "Normal Mode\n\nNumber of ToDoItems Checked: "+this.getNormal_numToDosChecked()+
 			   "\nNumber of ToDoItems Unchecked: "+this.getNormal_numToDosUnchecked()+
 			   "\nNumber of Archived ToDoItems: "+this.getNormal_numToDosArchived()+
-			   "\nArchive Mode\n\n"+
+			   "\n\nArchive Mode\n\n"+
 			   "Number of Archived ToDoItems Checked: "+this.getArchive_numToDosChecked()+
 			   "\nNumber of Archived ToDoItems Unchecked: "+this.getArchive_numToDosUnchecked();
 	}

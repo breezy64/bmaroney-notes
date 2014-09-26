@@ -8,7 +8,7 @@ public class SummaryActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_summary);
-	    SummaryController sum=new SummaryController(this,getString(R.string.prefs_ToDos),getString(R.string.prefs_ToDos));
+	    SummaryController sum=new SummaryController(this,getString(R.string.prefs_ToDos),getString(R.string.prefs_archive));
 	    ((TextView)findViewById(R.id.textView1)).setText(sum.summary());
 	}
 }
