@@ -58,20 +58,18 @@ public class MainActivityMultiChoiceListener implements AbsListView.MultiChoiceM
 	        switch (item.getItemId()) {
 	            case R.id.delete:
 	                callingAct.deleteToDo(positions);
-	            	mode.finish(); // Action picked, so close the CAB
+	            	mode.finish(); 
 	                return true;
 	            case R.id.email:
 	            	callingAct.sendEmail(positions);
-	            	mode.finish(); // Action picked, so close the CAB
+	            	mode.finish();
 	                return true;
 	            case R.id.action_mark:
 	            	callingAct.toggleState(positions);
-	            	positions.clear();
-	            	mode.finish(); // Action picked, so close the CAB
-	                return true;
+	            	mode.finish(); 
 	            case R.id.action_sendToArchive:
 	            	callingAct.sendtoArchive(positions);
-	            	mode.finish(); // Action picked, so close the CAB
+	            	mode.finish(); 
 	                return true;
 	            case R.id.unarch:
 	            	((ArchiveActivity)callingAct).unarchive(positions);
@@ -83,6 +81,7 @@ public class MainActivityMultiChoiceListener implements AbsListView.MultiChoiceM
 	    // Called when the user exits the action mode
 	    @Override
 	    public void onDestroyActionMode(ActionMode mode) {
+	    	positions.clear();
 	    }
 
 		@Override

@@ -26,6 +26,7 @@ public class ToDoListController {
 	private Activity ToDoAct;
 	private ToDoListSaver saver;
 	private static ToDoListLoader loader=null;
+	//singleton
 	private List<ToDoListItem> toDoList;
 
 	public ToDoListController(Activity main, int prefKey){

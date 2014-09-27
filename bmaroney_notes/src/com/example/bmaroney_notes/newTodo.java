@@ -33,6 +33,7 @@ public class newTodo extends Activity {
 	}
 	public void sendToDo(View view){
 		ToDoListController controller=new ToDoListController(this,R.string.prefs_ToDos);
+		//Don't allow empty ToDos
 		if(!getToDo().equals(""))
 		controller.saveToDoListItem(new ToDoListItem(getToDo(),false));
 		finish();

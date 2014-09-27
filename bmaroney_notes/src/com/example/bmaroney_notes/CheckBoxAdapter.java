@@ -22,7 +22,7 @@ package com.example.bmaroney_notes;
 /*I learnt how to make a custom adapter by reading the following Android cookbook:
  * “Android Cookbook, edited by Ian F. Darwin (O’Reilly). Copyright 2012 O’Reilly Media, Inc., 978-1-449-38841-6.”
  * That book provided a link to source code 
- * written by  Marco Dinacci: http://www.intransitione.com/intransitione.com/code/android/adv_listview_demo.zip)
+ * written by  Marco Dinacci(available here:http://www.intransitione.com/intransitione.com/code/android/adv_listview_demo.zip)
  * which may CheckboxAdapter is based on. 
  */
 

@@ -108,6 +108,7 @@ public class MainActivity extends Activity {
 	protected void setItems(ArrayAdapter<ToDoListItem> items) {
 		this.items = items;
 	}
+	//Make sure ArrayAdapter holds the latest data
 	private void refresh(){
 		items.clear();
 		controller.loadToDoList(items);
@@ -143,6 +144,7 @@ public class MainActivity extends Activity {
 		 items.remove(item);
 		 controller.remove(item);
 	 }
+	 
 	protected ArrayList<ToDoListItem> arrayAdapterSubList(ArrayList<Integer> positions){
 		 ArrayList<ToDoListItem> subList=new ArrayList<ToDoListItem>();
 		 for(int position:positions){
