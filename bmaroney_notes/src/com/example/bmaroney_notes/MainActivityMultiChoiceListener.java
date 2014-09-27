@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  */
 package com.example.bmaroney_notes;
-/**
+/*
  * My implementation of a MulitChoiceListener is based on the ones presented in the
  * Android Developer Guides (http://developer.android.com/guide/topics/ui/menus.html)
  */

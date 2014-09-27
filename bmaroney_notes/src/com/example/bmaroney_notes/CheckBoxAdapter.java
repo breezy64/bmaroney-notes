@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright [2011] [Marco Dinacci <marco.dinacci@gmail.com>]
  * Copyright [2014] Byron Maroney
  *
@@ -12,16 +12,17 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.
+ * limitations under the License.Ian F. Darwin
 
  * The license text is available online and in the LICENSE file accompanying the distribution
  * of this program.
  */
 package com.example.bmaroney_notes;
 
-/**I learnt how to make a custom adapter by reading the following Android cookbook:
+/*I learnt how to make a custom adapter by reading the following Android cookbook:
  * “Android Cookbook, edited by Ian F. Darwin (O’Reilly). Copyright 2012 O’Reilly Media, Inc., 978-1-449-38841-6.”
- * That book provided a link to source code (http://www.intransitione.com/intransitione.com/code/android/adv_listview_demo.zip)
+ * That book provided a link to source code 
+ * written by  Marco Dinacci: http://www.intransitione.com/intransitione.com/code/android/adv_listview_demo.zip)
  * which may CheckboxAdapter is based on. 
  */
 

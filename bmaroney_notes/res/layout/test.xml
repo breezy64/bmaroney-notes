@@ -11,6 +11,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<!-- The text view below is directly from the layout file, simple_list_item_activated_1, in the res.layout package in the
+      android.jar in /platforms/android-17/ file from the android sdk tar file 
+      (available here:http://dl.google.com/android/android-sdk_r23.0.2-linux.tgz) -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

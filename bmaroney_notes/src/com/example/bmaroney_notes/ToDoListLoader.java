@@ -33,6 +33,7 @@ public class ToDoListLoader{
 		ToDos=new ArrayList<ToDoListItem>();
 	}
 	public ArrayList<ToDoListItem> loadToDoList(){
+		//Make sure the preference file isn't empty and that the Arraylist is empty
 		if(helper.isEmpty() && ToDos.isEmpty() ){
 			getToDoListItems();
 		}

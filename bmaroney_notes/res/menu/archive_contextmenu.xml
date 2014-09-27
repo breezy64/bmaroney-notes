@@ -11,5 +11,9 @@
     <item android:title="@string/action_unarch"
           android:id="@+id/unarch"
           android:showAsAction="ifRoom" />
+    <item android:title="@string/action_markCompleted"
+          android:showAsAction="ifRoom"
+          android:id="@+id/action_mark"
+          android:icon="@drawable/ic_action_accept" />
 </menu>
 

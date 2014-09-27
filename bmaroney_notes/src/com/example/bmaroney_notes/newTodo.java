@@ -16,7 +16,6 @@
 
 package com.example.bmaroney_notes;
 
-import com.example.bmaroney_notes.R;
 
 import android.app.Activity;
 import android.content.Intent;

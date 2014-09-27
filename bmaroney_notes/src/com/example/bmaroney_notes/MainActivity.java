@@ -15,7 +15,7 @@
 */
 package com.example.bmaroney_notes;
 
-/**
+/*
  I included The Android Open Source Project in my license header since my implementation of onOptionsItemSelected
  is based on the implementation available on the Android Develepor Guides 
  (http://developer.android.com/training/basics/firstapp/starting-activity.html)
@@ -119,7 +119,7 @@ public class MainActivity extends Activity {
 	 public void sendEmail(ArrayList<Integer> positions){
 	    	startActivity(generateEmailIntent(ToDoListItem.printToDoList(arrayAdapterSubList(positions))));
 	 }
-	 /*I learnt how to use to make intents send email from this post on stackoverflow: 
+	 /*I learnt how to use to make intents send email from fiXedd's post on stackoverflow: 
 	 http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application
 	 */
 	 private Intent generateEmailIntent(String emailText){
